@@ -1,0 +1,2 @@
+config NES6502_POWER
+    bool
