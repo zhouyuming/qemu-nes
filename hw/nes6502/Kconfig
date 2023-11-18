@@ -1,0 +1,6 @@
+config NES6502_MCU
+
+config XIAOBAWANG
+    select NES6502_MCU
+    select FRAMEBUFFER
+    select ADB
