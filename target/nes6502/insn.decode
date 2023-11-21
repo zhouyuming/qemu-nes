@@ -1,0 +1,236 @@
+#
+# Arithmetic Instructions
+#
+CMP             1100 1001 imm8:8
+CMP_ZEROPAGE     1100 0101 imm8:8
+CMP_ZEROPAGEX    1101 0101 imm8:8
+CMP_ABSOLUTE     1100 1101 addr1:8 addr2:8
+CMP_ABSOLUTEX    1101 1101 addr1:8 addr2:8
+CMP_ABSOLUTEY    1101 1001 addr1:8 addr2:8
+CMP_INDIRECTX    1100 0001 imm8:8
+CMP_INDIRECTY    1101 0001 imm8:8
+DEX             1100 1010
+DEY             1000 1000
+ANDIM           0010 1001 imm8:8
+AND_ZERPAGE      0010 0101 imm8:8
+AND_ZERPAGEX     0011 0101 imm8:8
+AND_ABSOLUTE     0010 1101 addr1:8 addr2:8
+AND_ABSOLUTEX    0011 1101 addr1:8 addr2:8
+AND_ABSOLUTEY    0011 1001 addr1:8 addr2:8
+AND_INDIRECTX    0010 0001 imm8:8
+AND_INDIRECTY    0011 0001 imm8:8
+ADCIM           0110 1001 imm8:8
+ADC_ZEROPAGE     0110 0101 imm8:8
+ADC_ZEROPAGEX    0111 0101 imm8:8
+ADC_ABSOLUTE     0110 1101 addr1:8 addr2:8
+ADC_ABSOLUTEX    0111 1101 addr1:8 addr2:8
+ADC_ABSOLUTEY    0111 1001 addr1:8 addr2:8
+ADC_INDIRECTX    0110 0001 imm8:8
+ADC_INDIRECTY    0111 0001 imm8:8
+CPYIM           1100 0000 imm8:8
+CPY_ZEROPAGE     1100 0100 imm8:8
+CPY_ABSOLUTE     1100 1100 addr1:8 addr2:8
+DEC_ZEROPAGE     1100 0110 imm8:8
+DEC_ZEROPAGEX    1101 0110 imm8:8    
+DEC_ABSOLUTE     1100 1110 addr1:8 addr2:8
+DEC_ABSOLUTEX    1101 1110 addr1:8 addr2:8   
+INY             1100 1000
+CPXIM           1110 0000 imm8:8 
+CPX_ZEROPAGE     1110 0100 imm8:8 
+CPX_ABSOLUTE     1110 1100 addr1:8 addr2:8
+INC_ZERPAGE      1110 0110 imm8:8
+INC_ZERPAGEX     1111 0110 imm8:8
+INC_ABSOLUTE     1110 1110 addr1:8 addr2:8
+INC_ABSOLUTEX    1111 1110 addr1:8 addr2:8
+INX             1110 1000
+
+
+#
+# Branch Instructions
+#
+
+# The 22-bit immediate is partially in the opcode word,
+# and partially in the next.  Use append_16 to build the
+# complete 22-bit value.
+
+BPL             0001 0000 imm8:8
+JSR             0010 0000 addr1:8 addr2:8
+BMI             0011 0000 imm8:8
+RTI             0100 0000
+JMP_ABSOLUTE     0100 1100 addr1:8 addr2:8
+JMP_INDIRECT     0110 1100 addr1:8 addr2:8
+BVC             0101 0000 imm8:8
+RTS             0110 0000
+BVS             0111 0000 imm8:8
+BCC             1001 0000 imm8:8
+BCS             1011 0000 imm8:8
+BNE             1101 0000 imm8:8
+BEQ             1111 0000 imm8:8    
+
+#
+# Data Transfer Instructions
+#
+LDAIM           1010 1001 imm:8
+LDA_ZEROPAGE     1010 0101 imm8:8
+LDA_ZEROPAGEX    1011 0101 imm8:8
+LDAAB           1010 1101 addr1:8 addr2:8  # 0xAD
+LDA_ABSOLUTEX    1011 1101 addr1:8 addr2:8
+LDA_ABSOLUTEY    1011 1001 addr1:8 addr2:8
+LDA_INDIRECTX    1010 0001 imm8:8        
+LDA_INDIRECTY    1011 0001 imm8:8 
+STA_ZEROPAGE     1000 0101 imm8:8
+STA_ZEROPAGEX    1001 0101 imm8:8
+STAAB           1000 1101 addr1:8 addr2:8
+STA_ABSOLUTEX    1001 1101 addr1:8 addr2:8
+STA_ABSOLUTEY    1001 1001 addr1:8 addr2:8
+STA_INDIRECTX    1000 0001 imm8:8        
+STA_INDIRECTY    1001 0001 imm8:8 
+LDXIM           1010 0010 imm:8
+LDX_ZEROPAGE     1010 0110 imm8:8  
+LDX_ZEROPAGEY    1011 0110 imm8:8  
+LDX_ABSOLUTE     1010 1110 addr1:8 addr2:8   
+LDX_ABSOLUTEY    1011 1110 addr1:8 addr2:8 
+LDYIM           1010 0000 imm8:8
+LDY_ZEROPAGE     1010 0100 imm8:8  
+LDY_ZEROPAGEX    1011 0100 imm8:8  
+LDY_ABSOLUTE     1010 1100 addr1:8 addr2:8   
+LDY_ABSOLUTEX    1011 1100 addr1:8 addr2:8 
+ORA_IM           0000 1001 imm8:8
+ORA_ZEROPAGE     0000 0101 imm8:8
+ORA_ZEROPAGEX    0001 0101 imm8:8             
+ORA_ABSOLUTE     0000 1101 addr1:8 addr2:8       
+ORA_ABSOLUTEX    0001 1101 addr1:8 addr2:8       
+ORA_ABSOLUTEY    0001 1001 addr1:8 addr2:8       
+ORA_INDIRECTX    0000 0001 imm8:8        
+ORA_INDIRECTY    0001 0001 imm8:8        
+PHP             0000 1000
+PLP             0010 1000
+SEC             0011 1000
+EORIM           0100 1001 imm8:8  
+EOR_ZEROPAGE     0100 0101 imm8:8  
+EOR_ZEROPAGEX    0101 0101 imm8:8  
+EOR_ABSOLUTE     0100 1101 addr1:8 addr2:8   
+EOR_ABSOLUTEX    0101 1101 addr1:8 addr2:8   
+EOR_ABSOLUTEY    0101 1001 addr1:8 addr2:8    
+EOR_INDIRECTX    0100 0001 imm8:8        
+EOR_INDIRECTY    0101 0001 imm8:8   
+PUSHA           0100 1000
+PLA             0110 1000
+STY_ZEROPAGE     1000 0100 imm8:8   
+STY_ZEROPAGEX    1001 0100 imm8:8   
+STY_ABSOLUTE     1000 1100 addr1:8 addr2:8   
+STX_ZEROPAGE     1000 0110 imm8:8   
+STX_ZEROPAGEX    1001 0110 imm8:8   
+STX_ABSOLUTE     1000 1110 addr1:8 addr2:8  
+TXA             1000 1010
+TYA             1001 1000
+TAY             1010 1000
+TAX             1010 1010
+TSX             1011 1010
+SBCIM           1110 1001 imm8:8  
+SBC_ZEROPAGE     1110 0101 imm8:8  
+SBC_ZEROPAGEX    1111 0101 imm8:8  
+SBC_ABSOLUTE     1110 1101 addr1:8 addr2:8   
+SBC_ABSOLUTEX    1111 1101 addr1:8 addr2:8   
+SBC_ABSOLUTEY    1111 1001 addr1:8 addr2:8    
+SBC_INDIRECTX    1110 0001 imm8:8        
+SBC_INDIRECTY    1111 0001 imm8:8   
+
+
+#
+# Bit and Bit-test Instructions
+#
+ASL             0000 1010
+ASL_ZEROPAGE     0000 0110 imm8:8  
+ASL_ZEROPAGEX    0001 0110 imm8:8  
+ASL_ABSOLUTE     0000 1110 addr1:8 addr2:8 
+ASL_ABSOLUTEX    0001 1110 addr1:8 addr2:8 
+CLC             0001 1000
+BIT_ZEROPAGE     0010 0100 imm8:8  
+BIT_ABSOLUTE     0010 1100 addr1:8 addr2:8 
+ROLA            0010 1010
+ROL_ZEROPAGE     0010 0110 imm8:8
+ROL_ZEROPAGEX    0011 0110 imm8:8
+ROL_ABSOLUTE     0010 1110 addr1:8 addr2:8
+ROL_ABSOLUTEX    0011 1110 addr1:8 addr2:8
+LSRA            0100 1010
+LSR_ZEROPAGE     0100 0110 imm8:8
+LSR_ZEROPAGEX    0101 0110 imm8:8
+LSR_ABSOLUTE     0100 1110 addr1:8 addr2:8
+LSR_ABSOLUTEX    0101 1110 addr1:8 addr2:8
+CLI             0101 1000
+RORA            0110 1010
+ROR_ZEROPAGE     0110 0110 imm8:8
+ROR_ZEROPAGEX    0111 0110 imm8:8
+ROR_ABSOLUTE     0110 1110 addr1:8 addr2:8
+ROR_ABSOLUTEX    0111 1110 addr1:8 addr2:8
+CLV             1011 1000
+SED             1111 1000
+
+#
+# MCU Control Instructions
+#
+NOP             1110 1010
+SEI             0111 1000
+CLD             1101 1000
+TXS             1001 1010
+BRK             0000 0000
+
+#
+# Extended Instruction Set
+#
+
+ASOZEROPAGE     0000 0111 imm8:8  
+ASOZEROPAGEX    0001 0111 imm8:8  
+ASOABSOLUTE     0000 1111 addr1:8 addr2:8   
+ASOABSOLUTEX    0001 1111 addr1:8 addr2:8   
+ASOABSOLUTEY    0001 1011 addr1:8 addr2:8    
+ASOINDIRECTX    0000 0011 imm8:8        
+ASOINDIRECTY    0001 0011 imm8:8  
+
+RLAZEROPAGE     0010 0111 imm8:8  
+RLAZEROPAGEX    0011 0111 imm8:8  
+RLAABSOLUTE     0010 1111 addr1:8 addr2:8   
+RLAABSOLUTEX    0011 1111 addr1:8 addr2:8   
+RLAABSOLUTEY    0011 1011 addr1:8 addr2:8    
+RLAINDIRECTX    0010 0011 imm8:8        
+RLAINDIRECTY    0011 0011 imm8:8  
+
+LSEZEROPAGE     0100 0111 imm8:8  
+LSEZEROPAGEX    0101 0111 imm8:8  
+LSEABSOLUTE     0100 1111 addr1:8 addr2:8   
+LSEABSOLUTEX    0101 1111 addr1:8 addr2:8   
+LSEABSOLUTEY    0101 1011 addr1:8 addr2:8    
+LSEINDIRECTX    0100 0011 imm8:8        
+LSEINDIRECTY    0101 0011 imm8:8  
+
+RRAZEROPAGE     0110 0111 imm8:8  
+RRAZEROPAGEX    0111 0111 imm8:8  
+RRAABSOLUTE     0110 1111 addr1:8 addr2:8   
+RRAABSOLUTEX    0111 1111 addr1:8 addr2:8   
+RRAABSOLUTEY    0111 1011 addr1:8 addr2:8    
+RRAINDIRECTX    0110 0011 imm8:8        
+RRAINDIRECTY    0111 0011 imm8:8  
+
+INS_ABSOLUTE    1111 1111 addr1:8 addr2:8   
+
+#
+# Not implemented instructions
+#
+NOP_04_ZEROPAGE 0000 0100 imm8:8    
+NOP_44_ZEROPAGE 0100 0100 imm8:8    
+NOP_64_ZEROPAGE 0110 0100 imm8:8    
+
+NOP_0C_ABSOLUTE 0000 1100 addr1:8 addr2:8
+NOP_1C_ABSOLUTE 0001 1100 addr1:8 addr2:8
+NOP_3C_ABSOLUTE 0011 1100 addr1:8 addr2:8
+NOP_5C_ABSOLUTE 0101 1100 addr1:8 addr2:8
+NOP_7C_ABSOLUTE 0111 1100 addr1:8 addr2:8
+NOP_DC_ABSOLUTE 1101 1100 addr1:8 addr2:8
+NOP_FC_ABSOLUTE 1111 1100 addr1:8 addr2:8
+
+NOP_80_IM       1000 0000 imm8:8 
+NOP_82_IM       1000 0010 imm8:8 
+NOP_89_IM       1000 1001 imm8:8 
+NOP_C2_IM       1100 0010 imm8:8 
+NOP_E2_IM       1110 0010 imm8:8 
