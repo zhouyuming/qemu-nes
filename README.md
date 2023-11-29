@@ -13,4 +13,6 @@ mkdir build
 cd build
 ../configure --target-list="nes6502-softmmu" --enable-sdl
 make -j16
+
+qemu-system-nes6502 -M xiaobawang-v1 --display sdl -bios ../nes-roms/super_mario_bros.nes 
 ```
